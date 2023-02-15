@@ -10,7 +10,7 @@ template <float_like T = float>
 class BaseMethod {
  public:
   BaseMethod(std::function<T(T)> function, std::function<T(T)> derivative,
-             T epselon = 0.001) {
+             T epselon) {
     this->function = function;
     this->derivative = derivative;
     if (epselon < 1e-30) throw std::runtime_error("too small epselon");
