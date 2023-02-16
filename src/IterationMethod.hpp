@@ -31,10 +31,10 @@ class IterationMethod : public BaseMethod<T> {
     return xn;
   }
 
-  T* Solution(T* l_bounds, int bounds_count) {
+  T* Solution(T* bounds, int bounds_count) {
     T* result = new T[bounds_count];
     for (int i = 0; i < bounds_count; i++) {
-      result[i] = Solution(l_bounds[i], this->epselon);
+      result[i] = Solution(bounds[i], this->epselon);
     }
     return result;
   }
