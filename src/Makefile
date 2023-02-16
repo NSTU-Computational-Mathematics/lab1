@@ -8,10 +8,12 @@ OBJECTS = $(SOURCES:.cpp=.o)
 
 EXECUTABLE = MAIN.out
 
+
 all: $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(EXECUTABLE)
 	./$(EXECUTABLE)
 
+re: rebuild
 
 rebuild: clean all
 

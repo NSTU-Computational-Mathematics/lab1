@@ -19,10 +19,11 @@ class SecantMethod : public BaseMethod<T> {
 
     // std::cout << "xn-1 == " << xn_minus_1 << "\n";
     // std::cout << "xn == " << xn << "\n";
-    while (fabsf(xn - xn_minus_1) > this->epselon) {
+    while (!this->isEqual(xn, xn_minus_1)) {
       // std::cout << "xn-2 == " << xn_minus_2 << "\n";
       // std::cout << "xn-1 == " << xn_minus_1 << "\n";
       // std::cout << "xn == " << xn << "\n";
+      if (xn != xn) break;
       auto buf1 = xn_minus_1;
       auto buf2 = xn_minus_2;
       xn_minus_2 = xn_minus_1;
@@ -33,10 +34,10 @@ class SecantMethod : public BaseMethod<T> {
   }
 
   T* Solution(T* bounds, int bounds_count) {
-    T* result = new T[bounds_count];
-    for (int i = 0; i < bounds_count; i += 2)
-      result[i] = Solution(bounds[i], bounds[i + 1]);
-
+    T* result = new T[bounds_count / 2];
+    for (int i = 0, j = 0; i < bounds_count / 2; i++, j += 2) {
+      result[i] = Solution(bounds[j], bounds[j] + 0.01);
+    }
     return result;
   }
 

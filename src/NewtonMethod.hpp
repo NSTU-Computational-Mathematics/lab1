@@ -12,17 +12,18 @@ class NewtonMethod : public BaseMethod<T> {
   T Solution(T l_bound) {
     T xn = NewtonFormula(l_bound);
     T xn_plus_1 = NewtonFormula(xn);
-    while (abs(xn - xn_plus_1) > this->epselon) {
+    while (!this->isEqual(xn, xn_plus_1)) {
       xn = xn_plus_1;
       xn_plus_1 = NewtonFormula(xn);
     }
     return xn_plus_1;
   }
 
-  T* Solution(T* l_bounds, int l_bounds_count) {
-    T* result = new T[l_bounds_count];
-    for (int i = 0; i < l_bounds_count; i++) {
-      result[i] = Solution(l_bounds[i]);
+  T* Solution(T* bounds, int bounds_count) {
+    T* result = new T[bounds_count / 2];
+
+    for (int i = 0, j = 0; i < bounds_count / 2; i++, j += 2) {
+      result[i] = Solution(bounds[j]);
     }
     return result;
   }

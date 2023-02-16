@@ -31,4 +31,14 @@ class BaseMethod {
   T epselon;
   std::function<T(T)> function;
   std::function<T(T)> derivative;
+  bool isEqual(T val1, T val2) {
+    if (t_abs(val1 - val2) < this->epselon)
+      return true;
+    else
+      return false;
+  }
+  T t_abs(T x) {
+    if (x < 0) x *= -1;
+    return x;
+  }
 };

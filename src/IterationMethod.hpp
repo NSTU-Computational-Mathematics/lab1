@@ -19,29 +19,27 @@ class IterationMethod : public BaseMethod<T> {
     T xn = phi(xn_minus_1);
 
     int counter = 0;
-
-    while (!isConvergence(xn, xn_minus_1, fabsf(phiDerivative(xn))) &&
+    while (!isConvergence(xn, xn_minus_1, this->t_abs(phiDerivative(xn))) &&
            counter < 10) {
       if (xn != xn) break;
       xn_minus_1 = xn;
       xn = phi(xn);
-
-      if (xn_minus_1 - xn < this->epselon) counter++;
+      if (this->isEqual(xn, xn_minus_1)) counter++;
     }
     return xn;
   }
 
   T* Solution(T* bounds, int bounds_count) {
-    T* result = new T[bounds_count];
-    for (int i = 0; i < bounds_count; i++) {
-      result[i] = Solution(bounds[i], this->epselon);
+    T* result = new T[bounds_count / 2];
+    for (int i = 0, j = 0; i < bounds_count / 2; i++, j += 2) {
+      result[i] = Solution(bounds[j], bounds[j + 1]);
     }
     return result;
   }
 
  private:
   bool isConvergence(T Xn, T Xnmin1, T q) {
-    auto difference = fabsf(Xn - Xnmin1);
+    auto difference = this->t_abs(Xn - Xnmin1);
 
     if (q < 1 / 2)
       return difference < this->epselon;
@@ -49,9 +47,9 @@ class IterationMethod : public BaseMethod<T> {
       return difference < (q - 1) * this->epselon / q;
   }
   T findDerivativeAbsolutMaxValueInRange(T l, T r) {
-    auto max_value = fabsf(this->derivative(l));
+    auto max_value = this->t_abs(this->derivative(l));
     for (T i = l; i < r; i += this->epselon) {
-      T value = fabsf(this->derivative(i));
+      T value = this->t_abs(this->derivative(i));
       if (max_value < value) max_value = value;
     }
     return max_value;
