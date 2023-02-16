@@ -9,7 +9,7 @@ class NewtonMethod : public BaseMethod<T> {
                T epselon = 0.001)
       : BaseMethod<T>(function, derivative, epselon) {}
 
-  T NewtonSolution(T l_bound) {
+  T Solution(T l_bound) {
     T xn = NewtonFormula(l_bound);
     T xn_plus_1 = NewtonFormula(xn);
     while (abs(xn - xn_plus_1) > this->epselon) {
@@ -19,10 +19,10 @@ class NewtonMethod : public BaseMethod<T> {
     return xn_plus_1;
   }
 
-  T* NewtonSolution(T* l_bounds, int bounds_count) {
-    T* result = new T[bounds_count];
-    for (int i = 0; i < bounds_count; i++) {
-      result[i] = NewtonMethod(l_bounds[i], this->epselon);
+  T* Solution(T* l_bounds, int l_bounds_count) {
+    T* result = new T[l_bounds_count];
+    for (int i = 0; i < l_bounds_count; i++) {
+      result[i] = Solution(l_bounds[i]);
     }
     return result;
   }

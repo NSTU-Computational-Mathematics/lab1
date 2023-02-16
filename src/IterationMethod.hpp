@@ -11,19 +11,17 @@ class IterationMethod : public BaseMethod<T> {
                   T epselon = 0.001)
       : BaseMethod<T>(function, derivative, epselon) {}
 
-  T IterationSolution(T l_bound, T r_bound) {
+  T Solution(T l_bound, T r_bound) {
     lambda = -1 / findDerivativeAbsolutMaxValueInRange(l_bound, r_bound);
     if (this->derivative(l_bound) < 0) lambda *= -1;
 
     T xn_minus_1 = phi(l_bound);
     T xn = phi(xn_minus_1);
 
-    // std::cout << "lambda == " << lambda << std::endl;
     int counter = 0;
 
     while (!isConvergence(xn, xn_minus_1, fabsf(phiDerivative(xn))) &&
            counter < 10) {
-      // std::cout << "xn-1 == " << xn_minus_1 << " xn == " << xn << std::endl;
       if (xn != xn) break;
       xn_minus_1 = xn;
       xn = phi(xn);
@@ -33,10 +31,10 @@ class IterationMethod : public BaseMethod<T> {
     return xn;
   }
 
-  T* IterationSolution(T* l_bounds, int bounds_count) {
+  T* Solution(T* l_bounds, int bounds_count) {
     T* result = new T[bounds_count];
     for (int i = 0; i < bounds_count; i++) {
-      result[i] = IterationSolution(l_bounds[i], this->epselon);
+      result[i] = Solution(l_bounds[i], this->epselon);
     }
     return result;
   }
