@@ -97,7 +97,7 @@ void Task1(bool printAll = false, std::ostream& os = std::cout) {
   std::function<float(float)> der = derivative<float>;
 
   float answers[] = {0.2766, 1.7925, 3.6841};
-  float bounds[] = {0.000001, 1.0, 1.0, 2.0, 3.0, 4.0};
+  float bounds[] = {0.001, 1.0, 1.0, 2.0, 3.0, 4.0};
 
   NewtonTest(bounds, 6, fun, der, answers, printAll, os);
   IterationTest(bounds, 6, fun, der, answers, printAll, os);

@@ -13,9 +13,7 @@ class BaseMethod {
              T epsilon) {
     this->function = function;
     this->derivative = derivative;
-    if (epsilon < 1e-30) throw std::runtime_error("too small epsilon");
-    if (epsilon < 0) throw std::runtime_error("negative epsilon");
-    this->epsilon = epsilon;
+    this->setEpselon(epsilon);
   }
   T Function(T x) { return this->function(x); }
   T Derivative(T x) { return this->derivative(x); }
