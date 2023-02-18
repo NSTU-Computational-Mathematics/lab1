@@ -10,29 +10,29 @@ template <float_like T = float>
 class BaseMethod {
  public:
   BaseMethod(std::function<T(T)> function, std::function<T(T)> derivative,
-             T epselon) {
+             T epsilon) {
     this->function = function;
     this->derivative = derivative;
-    if (epselon < 1e-30) throw std::runtime_error("too small epselon");
-    if (epselon < 0) throw std::runtime_error("negative epselon");
-    this->epselon = epselon;
+    if (epsilon < 1e-30) throw std::runtime_error("too small epsilon");
+    if (epsilon < 0) throw std::runtime_error("negative epsilon");
+    this->epsilon = epsilon;
   }
   T Function(T x) { return this->function(x); }
   T Derivative(T x) { return this->derivative(x); }
 
-  T getEpselon() { return this->epselon; }
-  void setEpselon(T newEpselon) {
-    if (newEpselon < 1e-30) throw std::runtime_error("too small epselon");
-    if (newEpselon < 0) throw std::runtime_error("negative epselon");
-    this->epselon = newEpselon;
+  T getEpselon() { return this->epsilon; }
+  void setEpselon(T newEpsilon) {
+    if (newEpsilon < 1e-30) throw std::runtime_error("too small epsilon");
+    if (newEpsilon < 0) throw std::runtime_error("negative epsilon");
+    this->epsilon = newEpsilon;
   }
 
  protected:
-  T epselon;
+  T epsilon;
   std::function<T(T)> function;
   std::function<T(T)> derivative;
   bool isEqual(T val1, T val2) {
-    if (t_abs(val1 - val2) < this->epselon)
+    if (t_abs(val1 - val2) < this->epsilon)
       return true;
     else
       return false;
@@ -41,4 +41,5 @@ class BaseMethod {
     if (x < 0) x *= -1;
     return x;
   }
+  void printIntermTitle(std::ostream& os) { os << "\nIntermediate Results\n"; }
 };

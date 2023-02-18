@@ -6,26 +6,28 @@ template <float_like T = float>
 class SecantMethod : public BaseMethod<T> {
  public:
   SecantMethod(std::function<T(T)> function, std::function<T(T)> derivative,
-               T epselon = 0.001)
-      : BaseMethod<T>(function, derivative, epselon) {}
+               T epsilon = 0.001)
+      : BaseMethod<T>(function, derivative, epsilon) {}
 
-  T Solution(T l_bound, T r_bound) {
+  T Solution(T l_bound, T r_bound, bool print_intermediate_results = false,
+             std::ostream& os = std::cout) {
     T xn_minus_2 = SecantFormula(l_bound, r_bound);
-    // T xn_minus_2 = l_bound;
-    T xn_minus_1 = SecantFormula(xn_minus_1, l_bound);
-    // if (fabsf())
+    T xn_minus_1 = SecantFormula(xn_minus_1, r_bound);
     T xn = SecantFormula(xn_minus_1, xn_minus_2);
-    // std::cout << "xn-2 == " << xn_minus_2 << "\n";
 
-    // std::cout << "xn-1 == " << xn_minus_1 << "\n";
-    // std::cout << "xn == " << xn << "\n";
+    if (print_intermediate_results) {
+      os << "xn-1 = " << xn_minus_1 << " xn = " << xn << '\n';
+    }
+
     while (!this->isEqual(xn, xn_minus_1)) {
-      // std::cout << "xn-2 == " << xn_minus_2 << "\n";
-      // std::cout << "xn-1 == " << xn_minus_1 << "\n";
-      // std::cout << "xn == " << xn << "\n";
+      if (print_intermediate_results) {
+        os << "xn-1 = " << xn_minus_1 << " xn = " << xn << '\n';
+      }
       if (xn != xn) break;
+
       auto buf1 = xn_minus_1;
       auto buf2 = xn_minus_2;
+
       xn_minus_2 = xn_minus_1;
       xn_minus_1 = xn;
       xn = SecantFormula(buf1, buf2);
@@ -33,10 +35,17 @@ class SecantMethod : public BaseMethod<T> {
     return xn;
   }
 
-  T* Solution(T* bounds, int bounds_count) {
+  T* Solution(T* bounds, int bounds_count,
+              bool print_intermediate_results = false,
+              std::ostream& os = std::cout) {
     T* result = new T[bounds_count / 2];
+    if (print_intermediate_results) this->printIntermTitle(os);
+
     for (int i = 0, j = 0; i < bounds_count / 2; i++, j += 2) {
-      result[i] = Solution(bounds[j], bounds[j] + 0.01);
+      if (print_intermediate_results) os << "#" << i + 1 << '\n';
+
+      result[i] =
+          Solution(bounds[j], bounds[j] + 0.01, print_intermediate_results, os);
     }
     return result;
   }
@@ -45,10 +54,8 @@ class SecantMethod : public BaseMethod<T> {
   T SecantFormula(T xn_minus_1, T xn_minus_2) {
     auto diff1 = xn_minus_1 - xn_minus_2;
     auto diff2 = this->function(xn_minus_1) - this->function(xn_minus_2);
-    if (fabsf(diff1) < this->epselon) return xn_minus_1;
-    if (fabsf(diff2) < this->epselon) throw std::runtime_error("asd");
-    // std::cout << "diff1 == " << diff1 << std::endl;
-    // std::cout << "diff2 == " << diff2 << std::endl;
+    if (diff1 < this->epsilon) return xn_minus_1;
+    if (fabsf(diff2) < this->epsilon) throw std::runtime_error("asd");
     return xn_minus_1 - (this->function(xn_minus_1) * diff1 / diff2);
   }
 };
