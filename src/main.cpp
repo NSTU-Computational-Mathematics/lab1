@@ -83,7 +83,7 @@ void SecantTest(T* bounds, int bounds_count, std::function<T(T)> function,
                 bool printAll = false, std::ostream& os = std::cout,
                 T step = 0.001) {
   PrintTitle("SECANT METHOD TEST", os);
-  auto method = SecantMethod<T>(function, derivative);
+  auto method = SecantMethod<T>(function, derivative, 0.0001);
   auto result = method.Solution(bounds, bounds_count, step, printAll, os);
   if (result == NULL) throw std::runtime_error("Null back");
 
@@ -110,7 +110,7 @@ void Task2(bool printAll = false, std::ostream& os = std::cout) {
   std::function<float(float)> der = derivative2<float>;
 
   float answers[] = {-0.006, 10.006};
-  float bounds[] = {-1, 0, 10, 11};
+  float bounds[] = {-1, 1, 10, 11};
   NewtonTest(bounds, 4, fun, der, answers, printAll, os);
   IterationTest(bounds, 4, fun, der, answers, printAll, os);
   SecantTest(bounds, 4, fun, der, answers, printAll, os);
