@@ -45,7 +45,7 @@ void PrintAnswers(T* answers, T* result, int count,
       if (fabsf(result[i] - answers[i]) > EPSILON) {
         os << "Dif = " << result[i] - answers[i] << '\n';
       }
-      os << "Diference was more then epsilon: " << EPSILON << '\n';
+      os << "Difference was more than epsilon: " << EPSILON << '\n';
     }
   }
 }
@@ -119,19 +119,19 @@ void Task2(bool printAll = false, std::ostream& os = std::cout) {
 int main() {
   std::ofstream os;
 
-  os.open("Task1.txt", std::ofstream::out | std::ofstream::trunc);
+  os.open("../results/Task1.txt", std::ofstream::out | std::ofstream::trunc);
   Task1(false, os);
   os.close();
 
-  os.open("Task1+.txt", std::ofstream::out | std::ofstream::trunc);
+  os.open("../results/Task1+.txt", std::ofstream::out | std::ofstream::trunc);
   Task1(true, os);
   os.close();
 
-  os.open("Task2.txt", std::ofstream::out | std::ofstream::trunc);
+  os.open("../results/Task2.txt", std::ofstream::out | std::ofstream::trunc);
   Task2(false, os);
   os.close();
 
-  os.open("Task2+.txt", std::ofstream::out | std::ofstream::trunc);
+  os.open("../results/Task2+.txt", std::ofstream::out | std::ofstream::trunc);
   Task2(true, os);
   os.close();
 

@@ -1,0 +1,51 @@
+
+TASK 1 fun: -x^2 + 7x - 4ln(x) - 7
+
+****NEWTON METHOD TEST****
+Answers and Expected values
+#1
+Ans = 0.276653
+Exp = 0.2766
+Difference was more than epsilon: 0.001
+#2
+Ans = 1.7925
+Exp = 1.7925
+Difference was more than epsilon: 0.001
+#3
+Ans = 3.6841
+Exp = 3.6841
+Difference was more than epsilon: 0.001
+
+****ITERATION METHOD TEST****
+Answers and Expected values
+#1
+Ans = 0.224854
+Exp = 0.2766
+Dif = -0.0517461
+Difference was more than epsilon: 0.001
+#2
+Ans = 1.7925
+Exp = 1.7925
+Difference was more than epsilon: 0.001
+#3
+Ans = 3.6841
+Exp = 3.6841
+Difference was more than epsilon: 0.001
+
+****SECANT METHOD TEST****
+Answers and Expected values
+#1
+Ans = 0.240191
+Exp = 0.2766
+Dif = -0.0364085
+Difference was more than epsilon: 0.001
+#2
+Ans = 1.80567
+Exp = 1.7925
+Dif = 0.0131671
+Difference was more than epsilon: 0.001
+#3
+Ans = 3.44422
+Exp = 3.6841
+Dif = -0.239882
+Difference was more than epsilon: 0.001

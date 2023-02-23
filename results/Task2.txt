@@ -1,0 +1,35 @@
+
+TASK 2 fun: 100x^2 - 1000x -6
+
+****NEWTON METHOD TEST****
+Answers and Expected values
+#1
+Ans = -0.00599645
+Exp = -0.006
+Difference was more than epsilon: 0.001
+#2
+Ans = 10.006
+Exp = 10.006
+Difference was more than epsilon: 0.001
+
+****ITERATION METHOD TEST****
+Answers and Expected values
+#1
+Ans = -0.0059964
+Exp = -0.006
+Difference was more than epsilon: 0.001
+#2
+Ans = 10.006
+Exp = 10.006
+Difference was more than epsilon: 0.001
+
+****SECANT METHOD TEST****
+Answers and Expected values
+#1
+Ans = -0.00605647
+Exp = -0.006
+Difference was more than epsilon: 0.001
+#2
+Ans = 10.006
+Exp = 10.006
+Difference was more than epsilon: 0.001
