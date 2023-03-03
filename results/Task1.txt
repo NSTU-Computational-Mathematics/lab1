@@ -35,17 +35,14 @@ Difference was more than epsilon: 0.001
 ****SECANT METHOD TEST****
 Answers and Expected values
 #1
-Ans = 0.240191
+Ans = 0.276627
 Exp = 0.2766
-Dif = -0.0364085
 Difference was more than epsilon: 0.001
 #2
-Ans = 1.80567
+Ans = 1.7925
 Exp = 1.7925
-Dif = 0.0131671
 Difference was more than epsilon: 0.001
 #3
-Ans = 3.44422
+Ans = 3.6841
 Exp = 3.6841
-Dif = -0.239882
 Difference was more than epsilon: 0.001

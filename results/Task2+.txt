@@ -1038,10 +1038,15 @@ Difference was more than epsilon: 0.001
 
 Intermediate Results
 #1
-xn-1 = -0.0133684 xn = -0.00605647
-xn-1 = -0.00605647 xn = -0.00605647
+xn = -1 xn + 1 = -0.999
+xn = -0.999 xn + 1 = -0.088308
+xn = -0.088308 xn + 1 = -0.0133684
+xn = -0.0133684 xn + 1 = -0.00605647
+xn = -0.00605647 xn + 1 = -0.00599645
 #2
-xn-1 = 10.006 xn = 10.006
+xn = 10 xn + 1 = 10.001
+xn = 10.001 xn + 1 = 10.006
+xn = 10.006 xn + 1 = 10.006
 Answers and Expected values
 #1
 Ans = -0.00605647
